@@ -1,7 +1,7 @@
 
   # Festival Companion App
 
-  This is a code bundle for Festival Companion App. The original project is available at https://www.figma.com/design/7DUOcQau1sxHeHTQWRYMbk/Festival-Companion-App.
+  This is a code bundle for Festival Companion App.
 
   ## Running the code
 
