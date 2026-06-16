@@ -1,6 +1,6 @@
-import { WifiOff, MapPin, Users, Music } from "lucide-react";
+import { WifiOff, MapPin, Users, Bell } from "lucide-react";
 
-type FeatureId = "map" | "group" | "lyrics";
+type FeatureId = "map" | "group" | "notify";
 type FeatureStatus = "ok" | "degraded" | "offline";
 
 interface OfflineBannerProps {
@@ -11,7 +11,7 @@ interface OfflineBannerProps {
 const FEATURE_ICONS: Record<FeatureId, React.ReactNode> = {
   map: <MapPin className="w-3 h-3" />,
   group: <Users className="w-3 h-3" />,
-  lyrics: <Music className="w-3 h-3" />,
+  notify: <Bell className="w-3 h-3" />,
 };
 
 const STATUS_COLOR: Record<FeatureStatus, string> = {
@@ -23,7 +23,7 @@ const STATUS_COLOR: Record<FeatureStatus, string> = {
 const DEFAULT_FEATURES: { feature: FeatureId; status: FeatureStatus }[] = [
   { feature: "map", status: "ok" },
   { feature: "group", status: "degraded" },
-  { feature: "lyrics", status: "offline" },
+  { feature: "notify", status: "offline" },
 ];
 
 export function OfflineBanner({ features = DEFAULT_FEATURES, onTap }: OfflineBannerProps) {

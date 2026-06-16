@@ -1,4 +1,4 @@
-import { WifiOff, MapPin, Users, Music, Battery, X } from "lucide-react";
+import { WifiOff, MapPin, Users, Bell, Battery, X } from "lucide-react";
 import { LiveStatusBadge } from "./shared";
 
 interface OfflineStateProps {
@@ -23,12 +23,12 @@ const FEATURES = [
     note: "Wayfinding and stage locations work without signal.",
   },
   {
-    id: "lyrics",
-    icon: Music,
-    label: "Synced Lyrics",
+    id: "notify",
+    icon: Bell,
+    label: "Push Notifications",
     status: "offline" as const,
     detail: "Needs internet connection",
-    note: "Will resume when signal is restored.",
+    note: "Rally pins and friend alerts resume when signal returns.",
   },
 ];
 

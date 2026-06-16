@@ -20,8 +20,11 @@ export function Layout() {
         <Outlet />
       </div>
 
-      <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-zinc-900/95 backdrop-blur-lg border-t border-zinc-800">
-        <div className="flex justify-around items-center h-20 px-2">
+      <nav
+        className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-[#0E0E18]/95 backdrop-blur-xl border-t border-white/8"
+        style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+      >
+        <div className="flex justify-around items-center h-16 px-2">
           <NavLink
             to="/"
             className={({ isActive }) =>

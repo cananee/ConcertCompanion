@@ -69,7 +69,7 @@ interface AppContextType {
   userGroups: Group[];
   hasGroup: boolean;
   createGroup: (name: string, memberCount?: number) => Group;
-  joinGroup: (code: string) => void;
+  joinGroup: (code: string) => boolean;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -113,20 +113,26 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const updated = [...userGroups, newGroup];
     setUserGroups(updated);
     localStorage.setItem("user_groups", JSON.stringify(updated));
+    // Global registry so others can find the group by code
+    localStorage.setItem(`group_code_${newGroup.inviteCode}`, JSON.stringify(newGroup));
     return newGroup;
   };
 
-  const joinGroup = (code: string) => {
-    const newGroup: Group = {
+  const joinGroup = (code: string): boolean => {
+    const raw = localStorage.getItem(`group_code_${code}`);
+    if (!raw) return false;
+    const found: Group = JSON.parse(raw);
+    const joinedGroup: Group = {
       id: Date.now().toString(),
-      name: "Festival Crew",
-      memberCount: 4,
+      name: found.name,
+      memberCount: found.memberCount + 1,
       visibility: "Sharing exact location",
       inviteCode: code,
     };
-    const updated = [...userGroups, newGroup];
+    const updated = [...userGroups, joinedGroup];
     setUserGroups(updated);
     localStorage.setItem("user_groups", JSON.stringify(updated));
+    return true;
   };
 
   const currentUser: Friend = {
